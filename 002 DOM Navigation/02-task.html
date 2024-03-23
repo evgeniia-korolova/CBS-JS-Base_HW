@@ -17,7 +17,7 @@
 
 <body>
     <div id="color-sample"></div>
-    <p>Колір: </p>
+    <p>Колір: <span class="color-value"></span> </p>
 
     <script>
         /*
@@ -27,9 +27,9 @@
         Де #000000 значення кольору фону елемента div#color-sample.
         */
         function getRandomColor() {
-            var letters = '0123456789ABCDEF';
-            var color = '#';
-            for (var i = 0; i < 6; i++) {
+            let letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
                 color += letters[Math.floor(Math.random() * 16)];
             }
             return color;
@@ -37,6 +37,9 @@
 
         let colorSampleDiv = document.querySelector("#color-sample");
         colorSampleDiv.style.backgroundColor = getRandomColor();
+
+        let output = document.querySelector('.color-value');
+        output.innerHTML = getRandomColor();
 
 
     </script>

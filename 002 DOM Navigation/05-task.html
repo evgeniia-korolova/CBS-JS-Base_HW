@@ -487,9 +487,14 @@
                 }
             ];
 
+            let emailAddressesOutput = document.querySelector('#emailAddressesOutput');
+            let greatesFriendsCountOutput = document.querySelector('#greatesFriendsCountOutput');
+            let greatestBalanceCompanyOutput = document.querySelector('#greatestBalanceCompanyOutput');
+            let lowestBalanceCompanyOutput = document.querySelector('#lowestBalanceCompanyOutput');
+
             function showAllEmails() {
                 console.log("Електронні адреси користувачів:")
-                users.forEach(user => console.log(user.email));
+                users.forEach(user => emailAddressesOutput.innerHTML += (user.email) + `<br>`);
             }
 
             function showHigestFriendCount() {
@@ -504,7 +509,7 @@
 
                 users
                     .filter(user => user.friends.length == max)
-                    .forEach(user => console.log(user.name.first + " " + user.name.last));
+                    .forEach(user => greatesFriendsCountOutput.innerHTML += (user.name.first + " " + user.name.last) + '<br>');
             }
 
             function showMinMaxBalance() {
@@ -523,12 +528,12 @@
                 console.log("Компанії користувачів із найбільшим балансом:")
                 users
                     .filter(user => user.balance == maxBalance)
-                    .forEach(user => console.log(user.company));
+                    .forEach(user => greatestBalanceCompanyOutput.innerHTML += (user.company) +'<br>');
 
                 console.log("Компанії користувачів із найменшим балансом:")
                 users
                     .filter(user => user.balance == minBalance)
-                    .forEach(user => console.log(user.company));
+                    .forEach(user => lowestBalanceCompanyOutput.innerHTML += (user.company) +'<br>');
             }
 
             showAllEmails();
