@@ -56,6 +56,14 @@
     </table>
 
     <script>
+        const rows = document.querySelectorAll('tr');
+        console.log(rows);
+        
+        rows.forEach(item => {
+            if(item.cells[1].textContent < 100) {
+                item.style.display = 'none';
+            }
+        })
         /*
         Завдання:
         Напишіть сценарій, який видалить рядки таблиці, у яких у другій колонці розташовані значення менше за 100.

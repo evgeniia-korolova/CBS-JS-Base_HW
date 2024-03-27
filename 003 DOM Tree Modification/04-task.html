@@ -29,7 +29,7 @@
         Створіть таблицю (table, tr, td) на основі масиву об'єктів з ім'ям source. Кожен об'єкт – окремий рядок таблиці. Властивість month – значення для першої колонки.
         Властивість amont – значення для другої колонки.
         */
-
+       
         let source = [
             {
                 month: "Січень",
@@ -60,6 +60,19 @@
                 amount: 100
             }
         ];
+
+        const table = document.createElement('table');
+       document.body.prepend(table);
+       source.forEach(item => {
+        const row = document.createElement('tr');
+        const cellMonth = document.createElement('td');
+        const cellAmount = document.createElement('td');
+        cellMonth.textContent = `${item.month}`;
+        cellAmount.textContent = `${item.amount}`;
+        row.append(cellMonth);
+        row.append(cellAmount);
+        table.append(row);
+       })
 
     </script>
 </body>

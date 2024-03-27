@@ -1,27 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Task 2</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 2</title>
+		<style>
+			div {
+				font-weight: bold;
+			}
+		</style>
+	</head>
 
-    <style>
-        div {
-            font-weight: bold;
-        }
-    </style>
-</head>
+	<body>
+		Робочі дні
+		<div></div>
 
-<body>
-    Робочі дні
-    <div></div>
+		Вихідні дні
+		<div></div>
 
-    Вихідні дні
-    <div></div>
-
-    <script>
-       /*
+		<script>
+			/*
         Завдання:
         Використовуючи параграфи, виведіть усі робочі дні тижня у div, який розташований після фрази "Робочі дні",
         виведіть усі вихідні дні тижня після фрази "Вихідні дні".
@@ -29,14 +30,43 @@
         Створюйте параграфи за допомогою перебору масиву days. У параграфі поміщайте значення властивості name.
         */
 
-        let days = [{ name: "Sunday", isWorkDay: false },
-        { name: "Monday", isWorkDay: true },
-        { name: "Tuesday", isWorkDay: true },
-        { name: "Wednesday", isWorkDay: true },
-        { name: "Thursday", isWorkDay: true },
-        { name: "Friday", isWorkDay: true },
-        { name: "Saturday", isWorkDay: false }];
-    </script>
-</body>
+			let days = [
+				{ name: 'Sunday', isWorkDay: false },
+				{ name: 'Monday', isWorkDay: true },
+				{ name: 'Tuesday', isWorkDay: true },
+				{ name: 'Wednesday', isWorkDay: true },
+				{ name: 'Thursday', isWorkDay: true },
+				{ name: 'Friday', isWorkDay: true },
+				{ name: 'Saturday', isWorkDay: false },
+			];			
 
+			
+			const divs = document.querySelectorAll('div');
+			console.log(divs);
+			days.forEach((item) => {
+				if (item.isWorkDay === true) {
+					const p = document.createElement('p');
+					p.textContent = `${item.name}`;
+					divs[0].append(p);
+				} else {
+					const p = document.createElement('p');
+					p.textContent = `${item.name}`;
+					divs[1].append(p);
+				}
+			});
+
+            // const workingDays = [];
+			// const holydays = [];
+
+			// for (let i = 0; i < days.length; i++) {
+			// 	if (days[i].isWorkDay === true) {
+			// 		workingDays.push(days[i].name);
+			// 		console.log(workingDays);
+			// 	} else {
+			// 		holydays.push(days[i].name);
+			// 		console.log(holydays);
+			// 	}
+			// }
+		</script>
+	</body>
 </html>

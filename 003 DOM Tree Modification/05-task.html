@@ -487,10 +487,20 @@
             div.insertAdjacentHTML("beforeend", `<p>company: ${user.company}</p>`);
             div.insertAdjacentHTML("beforeend", `<br />friends:`);
 
+            
+
             let ul = document.createElement("ul");
+            let count = 0;
             for (const friend of user.friends) {
                 ul.insertAdjacentHTML("beforeend", `<li>${friend.name}</li>`);
+                count++;
+                if(count < 5) {
+                    div.style.border = `2px solid red`;                   
+                } else {
+                    div.style.border = `none`;
+                }
             }
+            console.log(count);
             
             div.append(ul);
             return div;
@@ -499,7 +509,11 @@
         users.forEach(user => {
             let card = createUserCard(user);
             document.body.append(card);
+            console.log(card);
+            
         });
+
+        
     </script>
 </body>
 

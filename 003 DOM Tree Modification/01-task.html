@@ -1,25 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Task 1</title>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 1</title>
-</head>
+	<body>
+		<div id="output"></div>
 
-<body>
-    <div id="output">
+		<script>
+			/*
+			Завдання:
+			Створіть параграфи під кожен елемент масиву days, значення елементів масиву мають бути додані як текст у параграфі.
+			Розмістіть усі створені параграфи в div з id output.
+			*/
+			let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+            const output = document.querySelector('#output');
+			days.forEach(item => {
+                
+			    const p = document.createElement('p');
+                p.textContent = `${item}`;
+                output.append(p);
 
-    </div>
-
-    <script>
-        /*
-        Завдання:
-        Створіть параграфи під кожен елемент масиву days, значення елементів масиву мають бути додані як текст у параграфі.
-        Розмістіть усі створені параграфи в div з id output.
-        */
-        let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    </script>
-</body>
-
+			})
+		</script>
+	</body>
 </html>
