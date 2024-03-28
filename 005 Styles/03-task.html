@@ -1,30 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Task 03</title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 03</title>
+		<style>
+			div {
+				background-color: lightblue;
+				padding: 8px;
+				margin: 4px;
+				display: inline-block;
+			}
 
-    <style>
-        div {
-            background-color: lightblue;
-            padding: 8px;
-            margin: 4px;
-            display: inline-block;
-        }
+			.busy-day {
+				color: darkred;
+				background-color: coral;
+			}
+		</style>
+	</head>
 
-        .busy-day {
-            color: darkred;
-            background-color: coral;
-        }
-    </style>
-</head>
-
-<body>
-    <script>
-        /*
+	<body>
+		<script>
+			/*
         Завдання:
         Застосунок створює для кожного дня тижня div і змінить, які дні тижня є зайнятими.
 
@@ -33,10 +36,25 @@
         Розмістіть усі створені наприкінці тіла документи.
         */
 
-        let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-        let busyDays = ["Monday", "Thursday", "Friday"];
+			let days = [
+				'Sunday',
+				'Monday',
+				'Tuesday',
+				'Wednesday',
+				'Thursday',
+				'Friday',
+				'Saturday',
+			];
+			let busyDays = ['Monday', 'Thursday', 'Friday'];
 
-    </script>
-</body>
-
+			days.forEach((day) => {
+				let div = document.createElement('div');
+				div.textContent = day;
+				if (busyDays.indexOf(day) != -1) {
+					div.classList.add('busy-day');
+				}
+				document.body.append(div);
+			});
+		</script>
+	</body>
 </html>
