@@ -163,6 +163,17 @@
             li.dataset.userNumber = index;
             uslerList.append(li);
         }
+
+        function mouseEnterHandler() {
+             const currentUser = users[this.dataset.userNumber];
+             let infoList = '';
+             infoList += `Age: ${currentUser.age} <br>`;
+             infoList += `Balance: ${currentUser.balance} <br>`;
+             infoList += `Company: ${currentUser.company} <br>`;
+             infoList += `Email: ${currentUser.email} <br>`;
+
+             document.querySelector("#output").innerHTML = infoList;
+        }
     </script>
 </body>
 

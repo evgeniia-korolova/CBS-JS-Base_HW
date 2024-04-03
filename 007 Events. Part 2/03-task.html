@@ -1,35 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta
+			http-equiv="X-UA-Compatible"
+			content="IE=edge" />
+		<meta
+			name="viewport"
+			content="width=device-width, initial-scale=1.0" />
+		<title>Task 03</title>
+		<style>
+			div {
+				display: inline-block;
+				width: 100px;
+				height: 100px;
+				background-color: green;
+				margin: 10px;
+			}
+		</style>
+	</head>
 
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Task 03</title>
-    <style>
-        div {
-            display: inline-block;
-            width: 100px;
-            height: 100px;
-            background-color: green;
-            margin: 10px;
-        }
-    </style>
-</head>
+	<body>
+		<div></div>
+		<div></div>
+		<div></div>
 
-<body>
-    <div></div>
-    <div></div>
-    <div></div>
-
-    <script>
-        /*
+		<script>
+			/*
         Завдання:
         Реалізуйте сценарій, який під час натискання на клавіші 1, 2 або 3 на клавіатурі додаватиме рамку
         червоного кольору на відповідний div. Якщо затиснуто клавіші Ctrl + A, то червона рамка додається відразу
         для всіх div.
         */
-    </script>
-</body>
 
+			let divs = document.querySelectorAll('div');
+
+			document.addEventListener('keydown', (e) => {
+				switch (e.key) {
+                   
+					case '1':
+					case '2':
+					case '3':
+                        
+						setBorder(e.key - 1);
+						break;
+				}
+				if (e.code == 'KeyA' && e.ctrlKey) {
+                    
+					// setBorder(0);
+					// setBorder(1);
+					// setBorder(2);
+
+                   divs.forEach(div => {
+                    div.style.border = '2px solid red';
+                })
+				}
+			});
+
+            function setBorder(divIndex) {
+                clearBorder();
+                divs[divIndex].style.border = '2px solid red';
+            }
+
+            function clearBorder() {
+                divs.forEach(div => {
+                    div.style.border = 'none';
+                })
+            }
+		</script>
+	</body>
 </html>

@@ -12,7 +12,11 @@
          Не змінюючи розташування елемента script, виправте помилку сценарію.
          Під час завантаження цього сценарію на сторінці має зобразитися повідомлення Hello world.
         */
-        document.querySelector("#output").textContent = "Hello world";
+       document.addEventListener('DOMContentLoaded', () => {
+           document.querySelector("#output").textContent = "Hello world";
+       })
+
+
     </script>
 </head>
 
