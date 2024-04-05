@@ -19,13 +19,11 @@
         Перепишіть сценарій так, щоб у коді встановлювався один обробник для всіх трьох кнопок, причому
         результат роботи сценарію не має змінюватись.
         */
-        let buttons = document.querySelectorAll("button");
-        buttons.forEach(btn => {
-            btn.addEventListener("click", clickHandler);
-        });
+       document.body.addEventListener("click" , clickHandler)
 
-        function clickHandler() {
-            alert(this.innerText);
+        function clickHandler(e) {
+            if(e.target.tagName !== 'BUTTON') return;
+            alert(e.target.innerText);
         }
     </script>
 </body>

@@ -56,6 +56,41 @@
         */
 
         // Створює та повертає div з класом interactiveElement з випадковою позицією у поточному вікні.
+
+        let generateButton = document.querySelector("#generateButton");
+        let interactivePanel = document.querySelector("#interactivePanel");
+        let move = false;
+        let offsetX, offsetY;
+        let currentDiv;
+        const computedButtonHeight = parseInt(getComputedStyle(generateButton).height);
+
+        generateButton.addEventListener("click", function () {
+            interactivePanel.innerHTML = ""; 
+            for (let i = 0; i < 100; i++) {
+                interactivePanel.append(generateElement());
+            }
+        });
+
+        interactivePanel.addEventListener("mousedown", function (e) {
+            if (e.target.classList.contains("interactiveElement")){
+                move = true;
+                offsetX = e.offsetX;
+                offsetY = e.offsetY;
+                currentDiv = e.target;                
+            }
+        })
+
+        interactivePanel.addEventListener("mousemove", function (e){
+            if (move) {
+                currentDiv.style.left = e.clientX - offsetX + 'px';
+                currentDiv.style.top = e.clientY - offsetY - computedButtonHeight + "px";
+            }
+        })
+
+        interactivePanel.addEventListener("mouseup", function (e) {
+            move = false;
+        });
+
         function generateElement() {
             let div = document.createElement("div");
             div.classList.add("interactiveElement");
