@@ -38,6 +38,15 @@
                 author: "Секрети JavaScript ніндзя"
             }
         ];
+
+        let temp = document.querySelector('#template');
+         for (let i = 0; i < books.length; i++){
+            let tempClone = temp.content.cloneNode(true);
+            const book = books[i];
+            tempClone.querySelector('#titlePlaceholder').textContent = book.title;
+            tempClone.querySelector('#authorPlaceholder').textContent = book.author;
+            document.body.append(tempClone);
+         }
     </script>
 </body>
 
