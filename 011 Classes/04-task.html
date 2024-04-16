@@ -69,6 +69,10 @@
         <input type="text" id="task-name-input">
         <button id="add-task-btn">Додати завдання</button>
     </div>
+    <div class="sort-panel">
+        <button id="show-all-btn">All tasks</button>
+        <button id="show-not-completed-btn">Not completed tasks</button>
+    </div>
     <div class="task-list">
         <p id="start-message">Немає нових завдань</p>
     </div>
@@ -89,9 +93,16 @@
         let addTaskButton = document.querySelector("#add-task-btn");
         let startMessage = document.querySelector("#start-message");
         let taskList = document.querySelector(".task-list");
+        let showAllTasksBtn = document.querySelector('#show-all-btn');
+        let showNotCompletedTasksBtn = document.querySelector('#show-not-completed-btn');
+
         let tasks = [];
 
         addTaskButton.addEventListener("click", addTaskHandler);
+        showAllTasksBtn.addEventListener("click", showAllHandler);
+        showNotCompletedTasksBtn.addEventListener("click", showNotCompletedHandler);
+
+
 
         taskNameInput.addEventListener("keydown", function (e) {
             if (e.code == "Enter") addTaskHandler();
@@ -109,6 +120,22 @@
             } else {
                 alert("введіть ім'я завдання");
             }
+        }
+
+        function showAllHandler() {
+            taskList.innerHTML = "";
+            tasks.forEach(task => {
+                task.createIn(taskList);
+            });
+        }
+
+        function showNotCompletedHandler() {
+            taskList.innerHTML = "";
+            tasks
+                .filter(task => task.isDone == false)
+                .forEach(task => {
+                    task.createIn(taskList);
+                });
         }
 
         class Task {
