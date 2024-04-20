@@ -24,8 +24,15 @@
             }
         }
 
-        class Truck {
+        class Truck extends Car{
             weight;
+            move() {
+                if (this.weight < 500) {
+                    super.move()
+                } else {
+                    console.log("Вантажівка рухається зі швидкістю 50 км/год")
+                }
+            }
             loadCargo(weight) {
                 if (weight > 1000) {
                     console.log("Ця вантажівка не може перевозити більш як 1000 кг вантажу");
