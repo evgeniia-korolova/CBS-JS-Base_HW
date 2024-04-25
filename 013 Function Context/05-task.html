@@ -9,6 +9,9 @@
 </head>
 
 <body>
+
+    <div id="message"></div>
+    <input id="number" autofocus autocomplete="off"> <button id="checkButton">Check</button>
     <script>
         /*
         Завдання:
@@ -31,6 +34,41 @@
         Користувач: 56
         Сценарій: Правильно! Загадане значення 56. Ви вгадали з 4-ї спроби за 10 сек.
         */
+
+        let randomValue = Math.floor(Math.random() * 101);
+        let message = document.querySelector("#message");
+        let input = document.querySelector('#number');
+        let max = 100;
+        let timerId = null;
+        let attempt = 0;
+        let duration = 0;
+        console.log(randomValue);
+       
+        message.innerHTML = "я загадав випадкове значення від 0 до 100";
+
+        timerId = setInterval(() => duration++, 1000);
+
+        function checkValue() {
+            attempt++;
+
+            let currentValue = input.value;
+            if (currentValue > randomValue) {
+                message.innerHTML = `я загадав значення менше за ${currentValue}`;
+            }
+            else if (currentValue < randomValue) {
+                message.innerHTML = `я загадав значення більше за ${currentValue}`;
+            }
+            if (currentValue == randomValue) {
+                clearInterval(timerId);
+                 message.innerHTML = `Правильно! Загадане значення ${randomValue}. Ви вгадали з  ${attempt}й спроби за ${duration} сек.`;
+                // alert(`Правильно! Загаданное значенеи ${randomValue}. Ви вгадали з ${attempt}й спроби за ${elapsed} сек.`);
+            }
+            input.value = "";
+        }
+
+        document.querySelector("#checkButton").addEventListener("click", checkValue);
+        document.body.addEventListener("keydown", (e) => { if (e.key == "Enter") checkValue(); });
+
     </script>
 </body>
 

@@ -16,6 +16,40 @@
         Метод приймає масив і на консоль по черзі виводить кожен елемент масиву з інтервалом в одну секунду.
         Зробіть два варіанти з setInterval і setTimeout.
         */
+
+        let array = [1, 2, 3, 4, 5];
+
+        function showWithDelay1(arr){
+            let current = 0;
+
+            let timer = setInterval(() => {
+
+                console.log(array[current]);
+                current++;
+
+                if (current == array.length)
+                    clearInterval(timer);
+            }, 1000);
+        }
+
+        // showWithDelay1(array);
+
+        function showWithDelay2(arr) {
+            function show(index) {
+                console.log(array[index]);
+                index++;
+
+                if (index < array.length)
+                    setTimeout(show, 1000, index);
+            }
+
+            show(0);            
+        }
+
+        showWithDelay2(array);
+       
+
+       
     </script>
 </body>
 

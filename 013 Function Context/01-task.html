@@ -54,13 +54,14 @@
         let containerWidth = parseInt(getComputedStyle(document.querySelector("#container")).width);
 
         let direction = "right";
+        let step = 3;
 
         function moveLeft() {
-            element.style.left = getLeft(element) - 3 + "px";
+            element.style.left = getLeft(element) - step + "px";
         }
 
         function moveRight() {
-            element.style.left = getLeft(element) + 3 + "px";
+            element.style.left = getLeft(element) + step + "px";
         }
 
         function getLeft(e) {
@@ -83,9 +84,27 @@
             }
         }
 
-        document.querySelector("#startBtn").addEventListener("click", function () {
-            setInterval(move, 40);
+        let intervalId;
+
+        document.querySelector("#startBtn").addEventListener("click", () => {
+            if(!intervalId) intervalId = setInterval(move, 40);
         });
+
+        document.querySelector("#stopBtn").addEventListener("click", () => {
+            if(intervalId) {
+                clearInterval(intervalId);
+                intervalId = null;
+            }
+        })
+
+        document.querySelector("#increaseBtn").addEventListener("click", function () {
+            step += 1;
+        });
+
+        document.querySelector("#decreaseBtn").addEventListener("click", function () {
+            step -= 1;
+        });
+        
     </script>
 </body>
 

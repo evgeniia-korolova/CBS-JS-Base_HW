@@ -26,14 +26,14 @@
 
             // Повертає всі значення з масиву values, які більші за значення змінної threshold.
             getGreaterThanThreshold() {
-                return this.#values.filter(function (v) {
+                return this.#values.filter( (v) => {
                     return v > this.#threshold;
                 })
             }
 
             // Повертає всі значення з масиву values, які менші за значення змінної threshold.
             getLessThanThreshold() {
-                return this.#values.filter(function (v) {
+                return this.#values.filter( (v) => {
                     return v < this.#threshold;
                 })
             }
