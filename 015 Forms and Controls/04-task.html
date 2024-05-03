@@ -274,8 +274,13 @@
             formService.fillForm(listService.selectedData);
         });
 
+        
         saveButton.addEventListener("click", function () {
-            formService.saveForm();
+            let message = "Ви дійсно хочете зберегти зміни?";
+            if (confirm(message))
+                formService.saveForm();
+            else
+                formService.fillForm(listService.selectedData);
         });
 
     </script>

@@ -45,6 +45,19 @@
         Завдання:
         Під час натискання на кнопку "Показати значення", використовуючи цикл for, виведіть значення всіх елементів керування input (крім input type=button) на консоль.
         */
+
+        let form = document.forms[0];
+        let btn = document.querySelector('[type=button]');
+
+        btn.addEventListener('click', ()=> {
+            for(let i =0; i <form.elements.length; i++) {
+            if(form.elements[i].type !== 'button') {
+            console.log(form.elements[i].value)
+            }
+        }
+        })
+
+        
     </script>
 </body>
 

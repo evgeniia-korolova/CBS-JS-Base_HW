@@ -84,6 +84,8 @@
             <input type="number" name="age" id="age">
         </div>
         <input type="button" value="Save" id="saveButton">
+        <button type="reset">Очистити форму</button>
+        <button type="button" id="deleteButton">Видалити</button>
     </form>
     <script>
         /*
@@ -210,22 +212,33 @@
                     
                     let li = document.createElement("li");
                     li.textContent = displayFn(currentData);
-                    li.dataset.index = index;
+                    // li.dataset.index = index;
+                    currentData.id = index;
+                    li.dataset.id = index;
 
                     this.listElement.append(li);
                 }
             }
 
             select(id) {
-                this.selectedData = this.data[id];
+                this.selectedData = this.data.filter(x => x.id == id)[0];
                 this.deselectAll();
-                this.listElement.children[id].classList.add("selected");
+                const index = this.data.indexOf(this.selectedData);
+                this.listElement.children[index].classList.add("selected");
             }
 
             deselectAll() {
                 for (let i = 0; i < this.listElement.children.length; i++) {
                     const child = this.listElement.children[i];
                     child.classList.remove("selected");
+                }
+            }
+
+            deleteSelectedItem() {
+                const index = this.data.indexOf(this.selectedData);
+                if (index != -1) {
+                    this.listElement.children[index].remove();
+                    this.data.splice(index, 1);
                 }
             }
         }
@@ -258,10 +271,15 @@
                 this.currentUser.email = this.form.email.value;
                 this.currentUser.age = this.form.age.value;
             }
+
+            resetForm() {
+                this.form.reset();
+            }
         }
 
         let userList = document.querySelector("#userList");
         let saveButton = document.querySelector("#saveButton");
+        let deleteButton = document.querySelector("#deleteButton");
 
         let listService = new ListService(users, userList, x => x.name.first + " " + x.name.last);
         let formService = new UserFormService(document.forms[0]);
@@ -269,7 +287,7 @@
         userList.addEventListener("click", function (e) {
             if (e.target.tagName != "LI") return;
 
-            const userNumber = e.target.dataset.index;
+            const userNumber = e.target.dataset.id;
             listService.select(userNumber);
             formService.fillForm(listService.selectedData);
         });
@@ -277,6 +295,12 @@
         saveButton.addEventListener("click", function () {
             formService.saveForm();
         });
+
+        deleteButton.addEventListener("click", function () {
+            listService.deleteSelectedItem();
+            formService.resetForm();
+        });
+
     </script>
 </body>
 
