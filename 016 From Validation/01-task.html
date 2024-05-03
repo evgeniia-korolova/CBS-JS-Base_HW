@@ -15,6 +15,10 @@
             width: 75px;
             display: inline-block;
         }
+
+        .hint-hidden {
+            display: none;
+        }
     </style>
 </head>
 
@@ -43,6 +47,28 @@
         2. У момент, коли поле введення login отримує фокус, покажіть підказку, яка розташована у span#loginHint.
         У момент, коли фокус отримує поле введення password, – підказку span#passwordHint.
         */
+       const form = document.forms[0];
+       form.addEventListener('submit', ()=> {
+        alert(`Your login : ${form.login.value} Your password : ${form.password.value}`);
+
+        e.preventDefault();
+       })
+
+       form.login.addEventListener("focus", function () {
+            document.querySelector("#loginHint").classList.remove('hint-hidden');
+        });
+
+        form.login.addEventListener("blur", function () {
+            document.querySelector("#loginHint").classList.add('hint-hidden');
+        });
+
+        form.password.addEventListener("focus", function () {
+            document.querySelector("#passwordHint").classList.remove('hint-hidden');
+        });
+
+        form.password.addEventListener("blur", function () {
+            document.querySelector("#passwordHint").classList.add('hint-hidden');
+        });
     </script>
 </body>
 

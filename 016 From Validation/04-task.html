@@ -60,29 +60,29 @@
     <form id="output">
         <div class="form-group">
             <label for="firstName">Ім'я</label>
-            <input type="text" name="firstName" id="firstName">
+            <input type="text" name="firstName" id="firstName" required>
         </div>
         <div class="form-group">
             <label for="lastName">Прізвище</label>
-            <input type="text" name="lastName" id="lastName">
+            <input type="text" name="lastName" id="lastName" required>
         </div>
         <div class="form-group">
             <label for="companyName">Компанія</label>
-            <input type="text" name="companyName" id="companyName">
+            <input type="text" name="companyName" id="companyName" required>
         </div>
         <div class="form-group">
             <label for="balance">Баланс</label>
-            <input type="number" name="balance" id="balance">
+            <input type="number" name="balance" id="balance" required min="1000">
         </div>
         <div class="form-group">
             <label for="email">Email</label>
-            <input type="text" name="email" id="email">
+            <input type="text" name="email" id="email" required>
         </div>
         <div class="form-group">
             <label for="age">Вік</label>
-            <input type="number" name="age" id="age">
+            <input type="number" name="age" id="age" required min="18">
         </div>
-        <input type="button" value="Save" id="saveButton">
+        <input type="submit" value="Save" id="saveButton">
         <input type="reset" value="Reset">
         <input type="button" value="Delete" id="deleteButton">
     </form>
@@ -299,8 +299,14 @@
             formService.fillForm(listService.selectedData);
         });
 
-        saveButton.addEventListener("click", function () {
+        // saveButton.addEventListener("click", function () {
+        //     formService.saveForm();
+            
+        // });
+
+           document.forms[0].addEventListener("submit", function (e) {
             formService.saveForm();
+            e.preventDefault();
         });
 
         // Видаляємо й очищаємо форму.
