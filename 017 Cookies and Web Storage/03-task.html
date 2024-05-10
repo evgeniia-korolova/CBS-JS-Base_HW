@@ -48,6 +48,10 @@
         </div>
     </form>
 
+     <button id="showAllButton">Показати все</button>
+    <button id="deleteAllButton">Очистити localStorage</button>
+    <table id="localStorageContent"></table>
+
     <script>
         /*
         Завдання:
@@ -76,6 +80,31 @@
             let value = localStorage.getItem(key); 
             alert(value);
         });
+
+        const table = document.querySelector("#localStorageContent");
+        const showAllButton = document.querySelector("#showAllButton");
+        const deleteAllButton = document.querySelector("#deleteAllButton");
+
+        function showLocalStorageContent() {
+             table.innerHTML = "";
+
+            for (let i = 0; i < localStorage.length; i++) {
+                let key = localStorage.key(i);
+                let value = localStorage.getItem(key);
+                table.insertAdjacentHTML("afterbegin", `<tr><td>${key}</td><td>${value}</td></tr>`);
+            }
+        }
+
+         showAllButton.addEventListener("click", function () {
+            showLocalStorageContent();
+        });
+
+        deleteAllButton.addEventListener("click", function () {
+            localStorage.clear();
+            showLocalStorageContent();
+        });
+
+
     </script>
 </body>
 

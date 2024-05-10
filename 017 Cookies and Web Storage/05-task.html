@@ -61,6 +61,10 @@
             padding-left: 4px;
             width: 68%;
         }
+
+        .task button {
+            margin-left: auto;
+        }
     </style>
 </head>
 
@@ -113,6 +117,12 @@
 
             open() {
                 this.tasks = JSON.parse(localStorage.getItem("tasks")) || [];
+            },
+
+            deleteTask(task) {
+                let index = this.tasks.indexOf(task);
+                this.tasks.splice(index, 1);
+                this.save();
             }
         }
 
@@ -173,8 +183,13 @@
                 let p = document.createElement("p");
                 p.innerText = this.task.text;
 
+                let button = document.createElement("button");
+                button.innerHTML = "X";
+                button.addEventListener("click", this.delete.bind(this));
+
                 this.div.append(input);
                 this.div.append(p);
+                this.div.append(button);
 
                 if (this.task.isDone) {
                     this.div.classList.add("completed");
@@ -187,6 +202,11 @@
                 this.task.isDone = !this.task.isDone;
                 dataService.save();
                 this.div.classList.toggle("completed");
+            }
+
+             delete() {
+                dataService.deleteTask(this.task);
+                this.div.remove();
             }
         }
 
