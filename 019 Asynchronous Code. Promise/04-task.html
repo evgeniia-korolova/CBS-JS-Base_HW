@@ -24,6 +24,17 @@
                 setTimeout(() => resolve("downloaded data"), random);
             });
         }
+
+        document.querySelector("button").addEventListener("click", function () {
+            let promises = [];
+            let operationCount = 5;
+
+            for (let i = 0; i < operationCount; i++) {
+                promises.push(download());
+            }
+
+            Promise.all(promises).then(() => alert("Всей файлы скачаны"));
+        });
     </script>
 </body>
 

@@ -19,6 +19,15 @@
         за шляхом https://images-assets.nasa.gov/image/PIA16239/PIA16239~orig.jpg
         під час натискання на кнопку Завантажити і виведення завантаженого зображення та елемент #output.
         */
+
+        document.querySelector('button').addEventListener('click', function() {
+            let url = 'https://images-assets.nasa.gov/image/PIA16239/PIA16239~orig.jpg';
+
+            downloadImage(url,
+                image => document.body.append(image),
+                e => console.log(e.message)
+            )
+        })
        
         function downloadImage(url, success, error) {
             let image = new Image(500);
