@@ -59,8 +59,14 @@
 
         let r1 = new Rect(10, 20);
 
-        r1.height = -10; // Помилка
-        r1.width = 30;
+        try {
+            r1.height = -10; // Помилка
+            r1.width = 30;
+        }
+        catch (error) {
+            console.log(error.message)
+        }
+
 
         console.log("width " + r1.width);
         console.log("height " + r1.height);

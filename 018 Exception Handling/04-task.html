@@ -16,8 +16,15 @@
         Зробіть так, щоб функція divide під час спроби ділення на 0 видавала цю помилку.
         Додайте код, який обробляє виняток.
         */
+         class DivideByZeroError extends Error {
+            constructor() {
+                super("Dividing by 0 is not allowed");
+                this.name = "DivideByZeroError";
+            }
+        }
 
-        function divide(operand1, operand2) {
+        function divide(operand1, operand2) { 
+            if(operand2 === 0)    throw new  DivideByZeroError()     
             return operand1 / operand2;
         }
 

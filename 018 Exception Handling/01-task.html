@@ -18,9 +18,15 @@
 
         let json = '{"name" : "Ivan", "age" = 20}';
 
-        let obj = JSON.parse(json);
-        console.log(obj.name);
-        console.log(obj.age);
+        try {
+            let obj = JSON.parse(json);
+            console.log(obj.name);
+            console.log(obj.age);
+        } 
+        catch {
+            console.log("Помилка читання JSON")
+        }
+        
         
     </script>
 </body>
