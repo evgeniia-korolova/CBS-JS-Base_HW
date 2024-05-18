@@ -15,6 +15,27 @@
         Напишіть сценарій, який під час завантаження сторінки виконає GET-запит на https://jsonplaceholder.typicode.com/photos
         і виведе на сторінку всі зображення у вигляді <img>, які будуть отримані у відповіді.
         */
+       let url = 'https://jsonplaceholder.typicode.com/photos'
+
+       fetch(url)
+       .then(response => response.json())
+       .then(json => {
+        console.log(json)
+        renderImages(json)
+    })
+
+       function renderImages(images) {
+        let div = document.createElement('div');
+
+        images.forEach(image => {
+            let img = document.createElement('img');
+            img.src = image.thumbnailUrl;
+            div.append(img);
+
+            document.body.append(div)
+        })
+       }
+       
     </script>
 </body>
 

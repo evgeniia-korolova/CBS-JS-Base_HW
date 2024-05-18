@@ -6,9 +6,40 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task 02</title>
+    <style>
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .form-group {
+            display: flex;
+            gap: 1rem;
+        }
+        button {
+            display: flex;
+            justify-content: center;
+            width: 80px;
+        }
+
+    </style>
 </head>
 
 <body>
+    <form action="">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input id="title" name="title" type="text">
+        </div>
+        <div class="form-group">
+            <label for="body">Body</label>
+            <textarea id="body" name="body" type="text"></textarea>
+        </div>
+         <div class="form-group">
+            <input id="updateButton" type="button" value="Обновить">
+        </div>
+
+    </form>
     <script>
         /*
         Завдання:
@@ -30,6 +61,38 @@
         Для оновлення сутності скористайтесь PUT-запитом https://jsonplaceholder.typicode.com/posts/1. Опрацюйте відповідь
         і виведіть інформацію про помилку або успішно завершену операцію.
         */
+
+        let url = "https://jsonplaceholder.typicode.com/posts/1";
+        let form = document.forms[0];
+
+        fetch(url)
+        .then(response => response.json())
+        .then(json => {
+            form.title.value = json.title;
+            form.body.value = json.body;
+        })
+
+        let button = document.querySelector('#updateButton');
+        button.addEventListener('click', () => {
+             let bodyObj = {
+                id: 1,
+                userId: 1,
+                title: form.title.value,
+                body: form.body.value
+            };
+             fetch(url, {
+                method: "PUT",
+                body: JSON.stringify(bodyObj)
+            }).then(response => {
+                if (response.ok) {
+                    console.log(response.json())
+                    alert("Data saved");
+                }
+                else {
+                    console.error("Fetch error (status code " + response.status + ")");
+                }
+                 })
+        })
     </script>
 </body>
 

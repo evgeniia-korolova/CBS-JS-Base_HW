@@ -6,15 +6,64 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Task 04</title>
+    <style>
+        table {
+            margin: 10px
+        }
+
+        table,
+        th,
+        td {
+            border: 1px solid black;
+        }
+
+        td,
+        th {
+            padding: 8px;
+        }
+    </style>
 </head>
 
 <body>
+    <table id="todoTable">
+        <tr>
+            <th>userid</th>
+            <th>id</th>
+            <th>title</th>
+            <th>completed</th>
+        </tr>
     <script>
         /*
         Завдання:
         Напишіть сценарій, який виконує запит GET за адресою https://jsonplaceholder.typicode.com/todos
         і виводить вміст відповіді у вигляді таблиці.
         */
+
+        let url = 'https://jsonplaceholder.typicode.com/todos';
+
+        fetch(url)
+        .then(response => response.json())
+        .then(json => {
+            console.log(json)
+            renderTableData(json)
+        })
+
+        let table = document.querySelector("#todoTable");
+
+        function renderTableData(json) {
+             json.forEach(element => {
+                table.append(renderRow(element.userId, element.id, element.title, element.completed));
+            });
+        }
+
+        function renderRow(userid, id, title, completed) {
+            let tr = document.createElement("tr");
+            tr.insertAdjacentHTML("beforeend", `<td>${userid}</td>`);
+            tr.insertAdjacentHTML("beforeend", `<td>${id}</td>`);
+            tr.insertAdjacentHTML("beforeend", `<td>${title}</td>`);
+            tr.insertAdjacentHTML("beforeend", `<td>${completed}</td>`);
+            return tr;
+        }
     </script>
 </body>
 

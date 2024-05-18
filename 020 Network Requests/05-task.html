@@ -130,6 +130,17 @@
                         isDone: element.completed
                     }
                 });
+            },
+
+            catchError(error) {
+                console.error(error.message);
+            },
+
+            checkResponseStatus(response) {
+                if (!response.ok) {
+                    let message = `Error code ${response.status}`;
+                    throw new Error(message);
+                }
             }
         }
 
